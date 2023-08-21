@@ -81,15 +81,31 @@ public class CustomerController {
 	public ModelAndView updateCustomer( @PathVariable("id")Integer id)
 	{
 		ModelAndView mv = new ModelAndView("update-customer");
-		Customer cus = customerService.getById(id);
-		mv.addObject("customer",cus);
+		CustomerFormData cus = new CustomerFormData();
+		mv.addObject("customerformdata",cus);
 		return mv;
 	}
 	
-	@PostMapping("/customer-update/{id}")
-	public String updateCustomer(@ModelAttribute Customer customer,@PathVariable("id")Integer id)
+	@PostMapping("/customer-update")
+	public String updateCustomer(@ModelAttribute CustomerFormData customerformdata)
 	{
-		customerService.updateCustomer(customer, id);
+		Customer customer = new Customer();
+		Address address = new Address();
+		
+		address.setAddressId(customerformdata.getAddressId());
+		address.setAddress(customerformdata.getAddress());
+		address.setCity(customerformdata.getCity());
+		address.setCountry(customerformdata.getCountry());
+		address.setPincode(customerformdata.getPincode());
+		addressService.updateAddress(address,address.getAddressId());
+		customer.setCustomerId(customerformdata.getCustomerId());
+		customer.setCustomerEmail(customerformdata.getCustomerEmail());
+		customer.setCustomerPassword(customerformdata.getCustomerPassword());
+		customer.setCustomerPhoneNumber(customerformdata.getCustomerPhoneNumber());
+		customer.setAddress(address);
+		customer.setRegisterOn(customerformdata.getRegisterOn());
+		customerService.updateCustomer(customer,customer.getCustomerId());
+		
 		return "redirect:/";
 	}
 }

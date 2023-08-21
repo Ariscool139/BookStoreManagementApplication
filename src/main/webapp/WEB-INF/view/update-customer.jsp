@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Customer SignUp </h1>
-	<form:form action="/customer-update/${customer.customerId}" method="post" modelAttribute="customer">
+	<form:form action="/customer-update/${CustomerFormData.customerId}" method="post" modelAttribute="customerformdata">
 		<table>
 			<tr>
 				<td><form:label path="customerId">customer Id :</form:label>
@@ -30,7 +30,7 @@
 				</td>
 				<td><form:input type="text" path="customerPhoneNumber" /></td>
 			</tr>
-						<tr>
+				<tr>
 				<td><form:label path="addressId">customer addressId :</form:label>
 				</td>
 				<td><form:input type="number" path="addressId" /></td>

@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>VIEWING ALL CUSTOMERS .......</h1>
+<br><br><br><br>
 <table border="2px">
 <thead>
 	<tr>
